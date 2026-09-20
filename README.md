@@ -1,2 +1,1 @@
-# phonksite
-Stupid website i made for school stuff
+do whatever the fuck you want with it. 
