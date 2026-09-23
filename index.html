@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Phonk Hub</title>
-  
+
   <link rel="icon" type="image/x-icon" href="phonk.ico">
   <link rel="stylesheet" href="style.css"> 
 
@@ -13,19 +13,40 @@
 </head>
 <body>
 
-<h1>Sigma Bros</h1>
+  <h1>Sigma Bros</h1>
 
-<div class="image-container">
-  <img src="https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif" alt="Burger GIF" class="side-img">
-  <img id="main-gif" src="https://media.tenor.com/Lnt2uEm1vrUAAAA1/67-67-kid.webp" alt="Egypt GIF" class="main-img">
-  
-  <img src="https://yt3.ggpht.com/eo45eWqdbMp4idUHtBD_kXNEapJnAlFEEGuBKo4uLr9OejKmGO6UTE7Zolo9yO2o4pRDoqq11rQavw=s1080-c-fcrop64=1,00000000ffffffff-rw-nd-v1" alt="Profile Image" class="side-img">
-</div>
+  <div class="image-container">
+    <img src="https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif" alt="Burger GIF" class="side-img">
+    <img id="main-gif" src="https://media.tenor.com/Lnt2uEm1vrUAAAA1/67-67-kid.webp" alt="Egypt GIF" class="main-img">
+    <img src="https://yt3.ggpht.com/eo45eWqdbMp4idUHtBD_kXNEapJnAlFEEGuBKo4uLr9OejKmGO6UTE7Zolo9yO2o4pRDoqq11rQavw=s1080-c-fcrop64=1,00000000ffffffff-rw-nd-v1" alt="Profile Image" class="side-img">
+  </div>
 
-<p style="font-family: sans-serif; font-size: 24px; line-height: 1.5; display: flex; align-items: center; justify-content: center; gap: 12px; text-align: center;">
-  Only 67% of Sigma nerds can pass the ultimate brainrot quiz!!
-  <img src="https://logolook.net/wp-content/uploads/2023/11/Emoji-Shocked.png" alt="Profile Image" style="height: 3em; width: auto; vertical-align: middle;">
-</p>
+  <p class="quiz-teaser">
+    Only 67% of Sigma nerds can pass the ultimate brainrot quiz!!
+    <img src="https://logolook.net/wp-content/uploads/2023/11/Emoji-Shocked.png" alt="Shocked Emoji" style="height: 3em; width: auto; vertical-align: middle;">
+  </p>
 
+  <!-- Button to transition into the quiz view -->
+  <button id="start-quiz-btn" class="sigma-btn">TAKE THE SIGMA QUIZ</button>
+
+  <!-- Quiz Section Container (Initially Hidden) -->
+  <div id="quiz-container" class="quiz-box hidden">
+    <div id="question-number" class="question-count">Question 1 / 10</div>
+    <div id="question-text" class="question-title">Question goes here?</div>
+    
+    <div id="options-grid" class="options-container">
+      <!-- Options will be populated dynamically -->
+    </div>
+  </div>
+
+  <!-- Results Section Container (Initially Hidden) -->
+  <div id="results-container" class="results-box hidden">
+    <h2>QUIZ COMPLETED!</h2>
+    <p id="score-text">Your Sigma Score: 0/10</p>
+    <p id="rank-text">Rank: Calculating...</p>
+    <button id="restart-btn" class="sigma-btn">TRY AGAIN</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
