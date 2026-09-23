@@ -1,74 +1,74 @@
-// Expanded Question Bank with GIFs and Images
+
 const questionBank = [
   {
     question: "What is the ultimate rule of a true Sigma?",
-    image: "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif",
+    image: "https://tenor.com/view/egypt-i-bought-gif-4838832831892586867",
     options: ["Never break the grindset", "Always talk in public", "Ask for permission", "Follow all trends"],
     answerIndex: 0
   },
   {
     question: "Where does the Mewing streak start?",
-    image: "https://media.tenor.com/Lnt2uEm1vrUAAAA1/67-67-kid.webp",
+    image: "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif",
     options: ["At the gym", "In silence", "On TikTok", "At midnight"],
     answerIndex: 1
   },
   {
     question: "What is the primary power source of Brainrot?",
-    image: "https://media.tenor.com/vHqQ8_4y1X4AAAAC/sigma-male.gif",
+    image: "https://media.tenor.com/FmYgrmA1cwYAAAAM/67-67-meme.gif",
     options: ["Skibidi energy", "Phonk beats", "Subway Surfers gameplay", "All of the above"],
     answerIndex: 3
   },
   {
     question: "Who is the CEO of Ohio?",
-    image: "https://media.tenor.com/qLhI9J2x3sIAAAAC/giga-chad.gif",
+    image: "https://media.tenor.com/CbN3G2XceVYAAAAM/putin-trump.gif",
     options: ["Kai Cenat", "Baby Gronk", "The Rizzler", "Livvy Dunne"],
     answerIndex: 2
   },
   {
     question: "What happens when you achieve W Rizz?",
-    image: "https://media.tenor.com/53xI4xXwGfEAAAAC/cat-mewing.gif",
+    image: "https://media.tenor.com/7HdRz8jCFVoAAAA1/dob-dob-dob-rizz.webp",
     options: ["You gain +100 aura", "You lose internet access", "You fall asleep", "Nothing"],
     answerIndex: 0
   },
   {
     question: "What time does the Sigma wake up?",
-    image: "https://media.tenor.com/f04T81G1mBAAAAAC/bateman-patrick-bateman.gif",
+    image: "https://media.tenor.com/a8IHKcQkXmkAAAAm/aura.webp",
     options: ["8:00 AM", "3:00 AM", "Sigma doesn't sleep", "12:00 PM"],
     answerIndex: 2
   },
   {
     question: "What music plays in the background of a Sigma edit?",
-    image: "https://media.tenor.com/Q9yM0JjV6SIAAAAC/phonk.gif",
+    image: "https://media.tenor.com/fbEy_7PiYFIAAAAM/%D0%B3%D0%BE%D0%B2%D0%BD%D0%BE-%D1%81%D0%BE%D0%BB%D0%BE-%D0%BB%D0%B5%D0%B2%D0%B5%D0%BB%D0%B8%D0%BD%D0%B3.gif",
     options: ["Classical Opera", "Brazilian Phonk", "Jazz", "Lofi Beats"],
     answerIndex: 1
   },
   {
     question: "If someone hits you with an Unspoken Rizz, what do you do?",
-    image: "https://media.tenor.com/Lnt2uEm1vrUAAAA1/67-67-kid.webp",
+    image: "https://media.tenor.com/ThLxxC0zE0YAAAAM/shocked-surprised.gif",
     options: ["Mew back immediately", "Run away", "Call the police", "Cry"],
     answerIndex: 0
   },
   {
     question: "Which state has maximum brainrot level?",
-    image: "https://media.tenor.com/mJ9L0o3rX24AAAAC/ohio.gif",
+    image: "https://media.tenor.com/zqSA5TmyIYUAAAAM/sus-cat-2-suspicious-cat.gif",
     options: ["Florida", "Ohio", "Texas", "California"],
     answerIndex: 1
   },
   {
     question: "What is Fanum Tax?",
-    image: "https://media.tenor.com/2s42kG3mD84AAAAC/food.gif",
+    image: "https://media.tenor.com/thsdSeKiTqgAAAA1/benjammins-fanum.webp",
     options: ["A state government tax", "Stealing 20% of your friend's food", "Paying for Wi-Fi", "Subscribing on Twitch"],
     answerIndex: 1
   },
   {
     question: "What does Mogging mean?",
-    image: "https://media.tenor.com/qLhI9J2x3sIAAAAC/giga-chad.gif",
+    image: "https://media.tenor.com/idGbTm3l6mwAAAAM/cruz-mewing-potato.gif",
     options: ["Walking fast", "Looking visually superior to everyone around", "Eating fast food", "Dancing"],
     answerIndex: 1
   },
   {
     question: "What is Grimace Shake known for?",
-    image: "https://media.tenor.com/vHqQ8_4y1X4AAAAC/sigma-male.gif",
+    image: "https://media.tenor.com/0QYEO-SgW0oAAAAM/grimace-shaker.gif",
     options: ["Infinite health", "Level 100 Gyatt", "Instant brainrot anomaly", "Gives you aura"],
     answerIndex: 2
   },
