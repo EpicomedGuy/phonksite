@@ -156,7 +156,7 @@ let selectedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 
-// Element References
+
 const startBtn = document.getElementById('start-quiz-btn');
 const quizContainer = document.getElementById('quiz-container');
 const resultsContainer = document.getElementById('results-container');
@@ -167,7 +167,7 @@ const scoreTextEl = document.getElementById('score-text');
 const rankTextEl = document.getElementById('rank-text');
 const restartBtn = document.getElementById('restart-btn');
 
-// Start Quiz Event
+
 startBtn.addEventListener('click', startQuiz);
 restartBtn.addEventListener('click', startQuiz);
 
@@ -175,7 +175,7 @@ function startQuiz() {
   startBtn.classList.add('hidden');
   resultsContainer.classList.add('hidden');
   
-  // Pick 10 unique questions randomly from the 25-question pool
+
   selectedQuestions = getRandomQuestions(questionBank, 10);
   currentQuestionIndex = 0;
   userScore = 0;
@@ -194,7 +194,7 @@ function displayQuestion() {
 
   questionNumEl.textContent = `Question ${currentQuestionIndex + 1} / 10`;
 
-  // Render question text along with its GIF
+ 
   questionTextEl.innerHTML = `
     <div style="margin-bottom: 15px;">
       <img src="${currentQ.image}" alt="Meme GIF" class="quiz-gif">
@@ -202,10 +202,9 @@ function displayQuestion() {
     <div>${currentQ.question}</div>
   `;
 
-  // Clear previous options
   optionsGridEl.innerHTML = '';
 
-  // Generate option buttons
+
   currentQ.options.forEach((optionText, index) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
@@ -218,7 +217,7 @@ function displayQuestion() {
 function handleOptionSelect(selectedIndex) {
   const currentQ = selectedQuestions[currentQuestionIndex];
 
-  // Quietly track score without revealing correct answer
+  
   if (selectedIndex === currentQ.answerIndex) {
     userScore++;
   }
