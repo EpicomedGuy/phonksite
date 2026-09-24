@@ -14,7 +14,7 @@ const questionBank = [
   },
   {
     question: "What is the primary power source of Brainrot?",
-    image: "https://media.tenor.com/FmYgrmA1cwYAAAAM/67-67-meme.gif",
+    image: "https://media.tenor.com/gmtaaiX-x5cAAAA1/micsinasz-masi.webp",
     options: ["Skibidi energy", "Phonk beats", "Subway Surfers gameplay", "All of the above"],
     answerIndex: 3
   },
@@ -26,7 +26,7 @@ const questionBank = [
   },
   {
     question: "What happens when you achieve W Rizz?",
-    image: "https://media.tenor.com/7HdRz8jCFVoAAAA1/dob-dob-dob-rizz.webp",
+    image: "https://media.tenor.com/VNk5icqd96wAAAAM/ursinho.gif",
     options: ["You gain +100 aura", "You lose internet access", "You fall asleep", "Nothing"],
     answerIndex: 0
   },
@@ -74,79 +74,79 @@ const questionBank = [
   },
   {
     question: "What is the maximum aura loss for dropping your lunch tray?",
-    image: "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif",
+    image: "https://media.tenor.com/67fCL8AygjQAAAA1/no-aura.webp",
     options: ["-10 Aura", "-500 Aura", "-100,000 Aura", "Infinite Aura loss"],
     answerIndex: 3
   },
   {
     question: "What happens when Baby Gronk rizzes up Livvy Dunne?",
-    image: "https://media.tenor.com/53xI4xXwGfEAAAAC/cat-mewing.gif",
+    image: "https://media.tenor.com/MCJFAavmyJwAAAAM/rizzler-the-rizzler.gif",
     options: ["He becomes the new Drip King", "Nothing", "Internet explodes", "Ohio resets"],
     answerIndex: 0
   },
   {
     question: "What is the primary food source of a Sigma?",
-    image: "https://media.tenor.com/2s42kG3mD84AAAAC/food.gif",
+    image: "https://media.tenor.com/SexLjc5sAokAAAA1/caseoh-case-oh.webp",
     options: ["Raw eggs and grindset", "Pizza", "Salad", "Protein powder mixed with air"],
     answerIndex: 0
   },
   {
     question: "How do you counter a negative Aura interaction?",
-    image: "https://media.tenor.com/f04T81G1mBAAAAAC/bateman-patrick-bateman.gif",
+    image: "https://media.tenor.com/ohh4VUlpwq0AAAAM/trollge-6-7.gif",
     options: ["Hit a quick jawline flex", "Apologize instantly", "Leave the state", "Start laughing"],
     answerIndex: 0
   },
   {
     question: "What is Skibidi Toilet's main arch-enemy?",
-    image: "https://media.tenor.com/vHqQ8_4y1X4AAAAC/sigma-male.gif",
+    image: "https://media.tenor.com/8qFRPXJZRy0AAAAM/toilet.gif",
     options: ["Cameramen", "Speakerheads", "TV Men", "All of the above"],
     answerIndex: 3
   },
   {
     question: "What does 'Bussin' mean in Sigma language?",
-    image: "https://media.tenor.com/Q9yM0JjV6SIAAAAC/phonk.gif",
+    image: "https://media.tenor.com/oYP4A77b_rIAAAAM/granny-dance.gif",
     options: ["Extremely good", "Taking the bus", "Broken", "Boring"],
     answerIndex: 0
   },
   {
     question: "What is the highest achievable rank in brainrot hierarchy?",
-    image: "https://media.tenor.com/qLhI9J2x3sIAAAAC/giga-chad.gif",
+    image: "https://media.tenor.com/17tz5nLA3I0AAAAM/%D0%B4.gif",
     options: ["Ligma Sigma God", "Alpha Leader", "Beta NPC", "Ohio Mayor"],
     answerIndex: 0
   },
   {
     question: "Why does the Sigma never double text?",
-    image: "https://media.tenor.com/f04T81G1mBAAAAAC/bateman-patrick-bateman.gif",
+    image: "https://media.tenor.com/62tPd3bFZjcAAAAM/the-rizzler-roblox.gif",
     options: ["They are busy on the grind", "They forgot", "No service", "Keyboard is broken"],
     answerIndex: 0
   },
   {
     question: "What happens if you break eye contact first?",
-    image: "https://media.tenor.com/53xI4xXwGfEAAAAC/cat-mewing.gif",
+    image: "https://media1.tenor.com/m/T7iurPaOs14AAAAd/freaky-orochimaru.gif",
     options: ["You get mogged instantly", "You win", "Nothing", "+50 Aura"],
     answerIndex: 0
   },
   {
     question: "Which stance grants maximum aura during a conversation?",
-    image: "https://media.tenor.com/qLhI9J2x3sIAAAAC/giga-chad.gif",
+    image: "https://media.tenor.com/hnVvqJoFSKYAAAAm/aura-max-aura.webp",
     options: ["Crossed arms, silent nod", "T-Pose", "Sitting down", "Dancing"],
     answerIndex: 0
   },
   {
     question: "What is the official currency of Ohio?",
-    image: "https://media.tenor.com/mJ9L0o3rX24AAAAC/ohio.gif",
+    image: "https://media.tenor.com/pB2hs8Wj814AAAAm/ohio-text.webp",
     options: ["Aura points", "US Dollars", "Robux", "V-Bucks"],
     answerIndex: 0
   },
   {
     question: "What sound does a Sigma make when entering a room?",
-    image: "https://media.tenor.com/Q9yM0JjV6SIAAAAC/phonk.gif",
+    image: "https://media.tenor.com/4945vVZQeYcAAAAM/im-aura-farming-aura.gif",
     options: ["Bass boosted phonk noise", "Hello everyone!", "Cough", "Silent walk"],
     answerIndex: 0
   },
   {
     question: "What is the ultimate response to hatin' betas?",
-    image: "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif",
+    image: "https://media.tenor.com/0BbetNtQpCoAAAAM/beta-son-im-crine.gif",
     options: ["🗿 (Silence)", "Argue back", "Cry", "Block them"],
     answerIndex: 0
   }
