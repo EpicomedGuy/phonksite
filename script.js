@@ -300,10 +300,10 @@ function displayQuestion() {
   // Handle Timer for Hard mode
   if (currentDifficulty === 'hard') {
     timeLeft = 10;
-    timerDisplay.textContent = `⏳ ${timeLeft}s`;
+    timerDisplay.textContent = ` ${timeLeft}s`;
     questionTimer = setInterval(() => {
       timeLeft--;
-      timerDisplay.textContent = `⏳ ${timeLeft}s`;
+      timerDisplay.textContent = ` ${timeLeft}s`;
       if (timeLeft <= 0) {
         clearInterval(questionTimer);
         // Time out - advance without point
