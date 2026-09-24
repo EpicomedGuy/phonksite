@@ -1,8 +1,8 @@
-
+// Extended Question Bank with working Direct Media URLs
 const questionBank = [
   {
     question: "What is the ultimate rule of a true Sigma?",
-    image: "https://tenor.com/view/egypt-i-bought-gif-4838832831892586867",
+    image: "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif",
     options: ["Never break the grindset", "Always talk in public", "Ask for permission", "Follow all trends"],
     answerIndex: 0
   },
@@ -149,36 +149,117 @@ const questionBank = [
     image: "https://media.tenor.com/0BbetNtQpCoAAAAM/beta-son-im-crine.gif",
     options: ["🗿 (Silence)", "Argue back", "Cry", "Block them"],
     answerIndex: 0
+  },
+  {
+    question: "What happens when you look into CaseOh's eyes?",
+    image: "https://media.tenor.com/SexLjc5sAokAAAA1/caseoh-case-oh.webp",
+    options: ["You feel gravity pulling you", "Nothing", "You get free food", "+100 Rizz"],
+    answerIndex: 0
+  },
+  {
+    question: "What is Duke Dennis' signature attribute?",
+    image: "https://media.tenor.com/MCJFAavmyJwAAAAM/rizzler-the-rizzler.gif",
+    options: ["Drip and Infinite Rizz", "Mewing", "Gaming skills", "Fast running"],
+    answerIndex: 0
+  },
+  {
+    question: "What does 'Edge' mean in Sigma terminology?",
+    image: "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif",
+    options: ["Maintaining maximum focus/control", "Standing on a cliff", "Playing games", "Sleeping"],
+    answerIndex: 0
+  },
+  {
+    question: "How do you achieve Level 100 Gyatt status?",
+    image: "https://media.tenor.com/0QYEO-SgW0oAAAAM/grimace-shaker.gif",
+    options: ["Squats and Phonk music", "Drinking milk", "Sleeping 12 hours", "Watching TikTok"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the ultimate Sigma drink?",
+    image: "https://media.tenor.com/0QYEO-SgW0oAAAAM/grimace-shaker.gif",
+    options: ["Pure Phonk Liquid", "Water", "Soda", "Coffee"],
+    answerIndex: 0
   }
 ];
 
+// State variables
 let selectedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
+let currentDifficulty = 'medium';
+let questionTimer = null;
+let timeLeft = 10;
 
-
-const startBtn = document.getElementById('start-quiz-btn');
+// DOM Elements
+const heroSection = document.getElementById('hero-section');
+const openDiffBtn = document.getElementById('open-difficulty-btn');
+const difficultyContainer = document.getElementById('difficulty-container');
 const quizContainer = document.getElementById('quiz-container');
 const resultsContainer = document.getElementById('results-container');
+
+const diffButtons = document.querySelectorAll('.diff-btn');
+const diffBadge = document.getElementById('diff-badge');
+const timerDisplay = document.getElementById('timer-display');
+const progressBar = document.getElementById('progress-bar');
+
 const questionNumEl = document.getElementById('question-number');
 const questionTextEl = document.getElementById('question-text');
 const optionsGridEl = document.getElementById('options-grid');
+
 const scoreTextEl = document.getElementById('score-text');
-const rankTextEl = document.getElementById('rank-text');
+const rankTitleEl = document.getElementById('rank-title');
+const rankDescEl = document.getElementById('rank-desc');
+const resultGifContainer = document.getElementById('result-gif-container');
 const restartBtn = document.getElementById('restart-btn');
 
+// Event Listeners
+openDiffBtn.addEventListener('click', showDifficultyScreen);
 
-startBtn.addEventListener('click', startQuiz);
-restartBtn.addEventListener('click', startQuiz);
+diffButtons.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const diff = e.currentTarget.getAttribute('data-diff');
+    startQuiz(diff);
+  });
+});
 
-function startQuiz() {
-  startBtn.classList.add('hidden');
+restartBtn.addEventListener('click', resetToHome);
+
+function showDifficultyScreen() {
+  heroSection.classList.add('hidden');
+  difficultyContainer.classList.remove('hidden');
+}
+
+function resetToHome() {
   resultsContainer.classList.add('hidden');
-  
+  quizContainer.classList.add('hidden');
+  heroSection.classList.remove('hidden');
+  openDiffBtn.classList.remove('hidden');
+  clearInterval(questionTimer);
+}
 
-  selectedQuestions = getRandomQuestions(questionBank, 10);
+function startQuiz(difficulty) {
+  currentDifficulty = difficulty;
+  difficultyContainer.classList.add('hidden');
+  resultsContainer.classList.add('hidden');
+
+  // Set number of questions based on difficulty
+  let count = 10;
+  if (difficulty === 'easy') count = 5;
+  if (difficulty === 'hard') count = 15;
+
+  selectedQuestions = getRandomQuestions(questionBank, count);
   currentQuestionIndex = 0;
   userScore = 0;
+
+  // Setup UI badges
+  diffBadge.textContent = difficulty.toUpperCase();
+  diffBadge.className = `badge ${difficulty}-badge`;
+
+  if (difficulty === 'hard') {
+    timerDisplay.classList.remove('hidden');
+  } else {
+    timerDisplay.classList.add('hidden');
+  }
 
   quizContainer.classList.remove('hidden');
   displayQuestion();
@@ -190,11 +271,15 @@ function getRandomQuestions(arr, num) {
 }
 
 function displayQuestion() {
+  clearInterval(questionTimer);
+  const total = selectedQuestions.length;
   const currentQ = selectedQuestions[currentQuestionIndex];
 
-  questionNumEl.textContent = `Question ${currentQuestionIndex + 1} / 10`;
+  // Update Progress Bar & Question Count
+  progressBar.style.width = `${((currentQuestionIndex) / total) * 100}%`;
+  questionNumEl.textContent = `Question ${currentQuestionIndex + 1} / ${total}`;
 
- 
+  // Render question text & meme image
   questionTextEl.innerHTML = `
     <div style="margin-bottom: 15px;">
       <img src="${currentQ.image}" alt="Meme GIF" class="quiz-gif">
@@ -202,9 +287,8 @@ function displayQuestion() {
     <div>${currentQ.question}</div>
   `;
 
+  // Render options grid
   optionsGridEl.innerHTML = '';
-
-
   currentQ.options.forEach((optionText, index) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
@@ -212,18 +296,36 @@ function displayQuestion() {
     btn.addEventListener('click', () => handleOptionSelect(index));
     optionsGridEl.appendChild(btn);
   });
+
+  // Handle Timer for Hard mode
+  if (currentDifficulty === 'hard') {
+    timeLeft = 10;
+    timerDisplay.textContent = `⏳ ${timeLeft}s`;
+    questionTimer = setInterval(() => {
+      timeLeft--;
+      timerDisplay.textContent = `⏳ ${timeLeft}s`;
+      if (timeLeft <= 0) {
+        clearInterval(questionTimer);
+        // Time out - advance without point
+        nextQuestion();
+      }
+    }, 1000);
+  }
 }
 
 function handleOptionSelect(selectedIndex) {
+  clearInterval(questionTimer);
   const currentQ = selectedQuestions[currentQuestionIndex];
 
-  
   if (selectedIndex === currentQ.answerIndex) {
     userScore++;
   }
 
-  currentQuestionIndex++;
+  nextQuestion();
+}
 
+function nextQuestion() {
+  currentQuestionIndex++;
   if (currentQuestionIndex < selectedQuestions.length) {
     displayQuestion();
   } else {
@@ -232,16 +334,47 @@ function handleOptionSelect(selectedIndex) {
 }
 
 function showResults() {
+  clearInterval(questionTimer);
   quizContainer.classList.add('hidden');
   resultsContainer.classList.remove('hidden');
 
-  scoreTextEl.textContent = `Your Sigma Score: ${userScore} / 10`;
+  const total = selectedQuestions.length;
+  const percentage = Math.round((userScore / total) * 100);
 
+  scoreTextEl.textContent = `Your Score: ${userScore} / ${total} (${percentage}%)`;
+
+  // Determine Advanced Rank & Message
   let rank = "";
-  if (userScore === 10) rank = "LIGMA SIGMA GOD 🗿🔥 (+9999 Aura)";
-  else if (userScore >= 7) rank = "GIGA CHAD IN TRAINING 🗿";
-  else if (userScore >= 4) rank = "AVERAGE OHIO CITIZEN 🌽";
-  else rank = "BETA NERD 🤓 (0 Aura)";
+  let message = "";
+  let gifUrl = "";
 
-  rankTextEl.textContent = `Rank: ${rank}`;
+  if (percentage === 100) {
+    rank = "👑 GOD-KING OF OHIO (+99,999 AURA)";
+    message = "You have reached peak brainrot ascension. Mewing level infinite. GigaChads fear your presence.";
+    gifUrl = "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif";
+  } else if (percentage >= 80) {
+    rank = "🗿 ULTIMATE SIGMA GRINDSET (+5,000 AURA)";
+    message = "Heavy phonk music plays wherever you walk. Your jawline can cut diamonds.";
+    gifUrl = "https://media.tenor.com/a8IHKcQkXmkAAAAm/aura.webp";
+  } else if (percentage >= 60) {
+    rank = "🔥 CERTIFIED RIZZLER (+1,000 AURA)";
+    message = "Not bad! You know your way around Ohio and Fanum taxes, but you need to keep grinding.";
+    gifUrl = "https://media.tenor.com/MCJFAavmyJwAAAAM/rizzler-the-rizzler.gif";
+  } else if (percentage >= 40) {
+    rank = "🌽 AVERAGE OHIO RESIDENT (0 AURA)";
+    message = "You get hit by Fanum Tax daily. Time to locks in and start mewing.";
+    gifUrl = "https://media.tenor.com/zqSA5TmyIYUAAAAM/sus-cat-2-suspicious-cat.gif";
+  } else if (percentage >= 20) {
+    rank = "🤓 BETA NPC (-5,000 AURA)";
+    message = "You dropped your lunch tray and lost all your aura points. Embarrassing.";
+    gifUrl = "https://media.tenor.com/67fCL8AygjQAAAA1/no-aura.webp";
+  } else {
+    rank = "💀 SKIBIDI TOILET VICTIM (-99,999 AURA)";
+    message = "Zero brainrot knowledge. Go back to basic training before stepping foot in Ohio again.";
+    gifUrl = "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif";
+  }
+
+  rankTitleEl.textContent = rank;
+  rankDescEl.textContent = message;
+  resultGifContainer.innerHTML = `<img src="${gifUrl}" class="result-gif" alt="Result GIF">`;
 }
