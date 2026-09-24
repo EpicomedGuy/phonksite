@@ -18,12 +18,27 @@ const MEME_SOUNDS = [
   'vine-boom.mp3'
 ];
 
-// Helper to play any sound file safely
+// Active main audio tracker to prevent overlapping
+let currentMainAudio = null;
+
+// Helper to play main background/meme sound (stops current playing main sound)
 function playAudio(filename) {
-  const audio = new Audio(filename);
-  audio.play().catch(err => {
-    // Suppress errors caused by browser autoplay policies
+  if (currentMainAudio) {
+    currentMainAudio.pause();
+    currentMainAudio.currentTime = 0;
+  }
+  
+  currentMainAudio = new Audio(filename);
+  currentMainAudio.play().catch(err => {
     console.log(`Audio play blocked or failed for: ${filename}`, err);
+  });
+}
+
+// Helper to play quick UI sounds (does NOT interrupt main audio)
+function playClickSound() {
+  const clickAudio = new Audio('click.mp3');
+  clickAudio.play().catch(err => {
+    console.log('Click audio play blocked or failed', err);
   });
 }
 
@@ -44,8 +59,16 @@ function triggerAuraOnFirstInteraction() {
 document.addEventListener('click', triggerAuraOnFirstInteraction, { once: true });
 document.addEventListener('keydown', triggerAuraOnFirstInteraction, { once: true });
 
-// Extended Question Bank with working Direct Media URLs
+// Attach global click SFX to all button elements
+document.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+    playClickSound();
+  }
+});
+
+
 const questionBank = [
+  // --- ORIGINAL QUESTIONS ---
   {
     question: "What is the ultimate rule of a true Sigma?",
     image: "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif",
@@ -225,9 +248,190 @@ const questionBank = [
     image: "https://media.tenor.com/0QYEO-SgW0oAAAAM/grimace-shaker.gif",
     options: ["Pure Phonk Liquid", "Water", "Soda", "Coffee"],
     answerIndex: 0
+  },
+
+  // --- NEW EXPANDED QUESTIONS ---
+  {
+    question: "What happens if you miss a single day of mewing?",
+    image: "https://media.tenor.com/idGbTm3l6mwAAAAM/cruz-mewing-potato.gif",
+    options: ["Your jawline dissolves", "Nothing at all", "You get +10 Aura", "You gain W Rizz"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the side-eye stance used for?",
+    image: "https://media.tenor.com/zqSA5TmyIYUAAAAM/sus-cat-2-suspicious-cat.gif",
+    options: ["Detecting Beta NPCs", "Looking for food", "Sleeping standing up", "Checking the time"],
+    answerIndex: 0
+  },
+  {
+    question: "Who holds the record for most Aura in history?",
+    image: "https://media.tenor.com/a8IHKcQkXmkAAAAm/aura.webp",
+    options: ["GigaChad", "Beta Male #4", "The Lunch Lady", "Subway Surfer"],
+    answerIndex: 0
+  },
+  {
+    question: "What happens when CaseOh steps on the scale?",
+    image: "https://media.tenor.com/SexLjc5sAokAAAA1/caseoh-case-oh.webp",
+    options: ["Tectonic plates shift", "Scale reads 150 lbs", "Nothing", "Scale plays phonk"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the primary objective in Roblox BrookHaven for Sigmas?",
+    image: "https://media.tenor.com/62tPd3bFZjcAAAAM/the-rizzler-roblox.gif",
+    options: ["Assert dominance and mog", "Buy a house", "Drive a normal car", "Make friends"],
+    answerIndex: 0
+  },
+  {
+    question: "What does 'Skeet' or 'Yeet' signify in brainrot physics?",
+    image: "https://media.tenor.com/ThLxxC0zE0YAAAAM/shocked-surprised.gif",
+    options: ["Maximum velocity propulsion", "Sleeping", "Mewing silently", "Eating lunch"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the signature move of 'The Rizzler'?",
+    image: "https://media.tenor.com/MCJFAavmyJwAAAAM/rizzler-the-rizzler.gif",
+    options: ["The Unspoken Squint", "A backflip", "Handshake", "High Five"],
+    answerIndex: 0
+  },
+  {
+    question: "What happens if Kai Cenat enters AMP House during a stream?",
+    image: "https://media.tenor.com/gmtaaiX-x5cAAAA1/micsinasz-masi.webp",
+    options: ["Riot level increases by 300%", "Quiet studying", "Sleep mode activated", "Stream ends"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the proper reaction to an L Take?",
+    image: "https://media.tenor.com/0BbetNtQpCoAAAAM/beta-son-im-crine.gif",
+    options: ["Hit 'em with the Skull Emoji 💀", "Say 'Thank you'", "Agree with them", "Cry"],
+    answerIndex: 0
+  },
+  {
+    question: "What does 'Glazing' mean?",
+    image: "https://media.tenor.com/thsdSeKiTqgAAAA1/benjammins-fanum.webp",
+    options: ["Over-praising someone excessively", "Making donuts", "Painting a wall", "Staring into space"],
+    answerIndex: 0
+  },
+  {
+    question: "What sound effect plays when a dramatic Sigma realization hits?",
+    image: "https://media.tenor.com/fbEy_7PiYFIAAAAM/%D0%B3%D0%BE%D0%B2%D0%BD%D0%BE-%D1%81%D0%BE%D0%BB%D0%BE-%D0%BB%D0%B5%D0%B2%D0%B5%D0%BB%D0%B8%D0%BD%D0%B3.gif",
+    options: ["Vine Boom", "Guitar solo", "Applause", "Silence"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the main trait of a NPC (Non-Playable Character)?",
+    image: "https://media.tenor.com/67fCL8AygjQAAAA1/no-aura.webp",
+    options: ["Repeating dialogue and lack of original thought", "High Aura", "Perfect jawline", "Master of Rizz"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the penalty for smiling during a cold stare contest?",
+    image: "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif",
+    options: ["Instant loss of 10,000 Aura", "You win", "Free food", "Promotion to Alpha"],
+    answerIndex: 0
+  },
+  {
+    question: "What vehicle does a True Sigma drive?",
+    image: "https://media.tenor.com/4945vVZQeYcAAAAM/im-aura-farming-aura.gif",
+    options: ["Batmobile / Stealth Fighter", "Minivan", "Bicycle with training wheels", "Scooter"],
+    answerIndex: 0
+  },
+  {
+    question: "What happens when you combine Phonk + Mewing + Cold Shower?",
+    image: "https://media.tenor.com/a8IHKcQkXmkAAAAm/aura.webp",
+    options: ["Ascension to Sigma Deity", "You get a cold", "Nothing", "You fall asleep"],
+    answerIndex: 0
+  },
+  {
+    question: "What does 'Sunk Cost Rizz' mean?",
+    image: "https://media.tenor.com/VNk5icqd96wAAAAM/ursinho.gif",
+    options: ["Rizzing so hard you lose money", "Failed attempts at flirtation", "Aura bankruptcy", "Winning instantly"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the favorite game of Brainrot enthusiasts?",
+    image: "https://media.tenor.com/gmtaaiX-x5cAAAA1/micsinasz-masi.webp",
+    options: ["Subway Surfers + Family Guy split screen", "Chess", "Solitaire", "Sudoku"],
+    answerIndex: 0
+  },
+  {
+    question: "How do you respond to 'Who asked?'",
+    image: "https://media.tenor.com/0BbetNtQpCoAAAAM/beta-son-im-crine.gif",
+    options: ["'I asked.' (Sigma Stare)", "Apologize", "Walk away crying", "Say 'Nobody'"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the mascot of Ohio's Secret Defense Force?",
+    image: "https://media.tenor.com/zqSA5TmyIYUAAAAM/sus-cat-2-suspicious-cat.gif",
+    options: ["Suspicious Cat", "Golden Retriever", "Goldfish", "Pigeon"],
+    answerIndex: 0
+  },
+  {
+    question: "What happens when you hit a 360 No-Scope in real life?",
+    image: "https://media.tenor.com/17tz5nLA3I0AAAAM/%D0%B4.gif",
+    options: ["+50,000 Aura points", "Physics breaks", "You get banned", "Nothing"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the official anthem of Ohio?",
+    image: "https://media.tenor.com/pB2hs8Wj814AAAAm/ohio-text.webp",
+    options: ["Swag Like Ohio", "National Anthem", "Lofi Beats", "Classical Music"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the weight class of CaseOh?",
+    image: "https://media.tenor.com/SexLjc5sAokAAAA1/caseoh-case-oh.webp",
+    options: ["Observable Universe", "Heavyweight", "Featherweight", "Middleweight"],
+    answerIndex: 0
+  },
+  {
+    question: "What happens if Fanum catches you eating pizza?",
+    image: "https://media.tenor.com/thsdSeKiTqgAAAA1/benjammins-fanum.webp",
+    options: ["20% slice tax enforced immediately", "He gives you more", "He ignores you", "He pays for it"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the ultimate goal of the Grindset?",
+    image: "https://media.tenor.com/a8IHKcQkXmkAAAAm/aura.webp",
+    options: ["Self-sovereignty and limitless aura", "Getting 8 hours of sleep", "Playing games all day", "Following rules"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the definition of 'Cooked'?",
+    image: "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif",
+    options: ["Completely over / defeated", "Preparing food", "Being happy", "Winning a prize"],
+    answerIndex: 0
+  },
+  {
+    question: "What happens when you step foot in an Ohio gas station at 3 AM?",
+    image: "https://media.tenor.com/ohh4VUlpwq0AAAAM/trollge-6-7.gif",
+    options: ["Boss fight initiates", "You get free snacks", "It's completely normal", "You gain +100 Health"],
+    answerIndex: 0
+  },
+  {
+    question: "What does 'Lightskin Stare' do?",
+    image: "https://media.tenor.com/MCJFAavmyJwAAAAM/rizzler-the-rizzler.gif",
+    options: ["Applies passive charm and confuses opponents", "Blinds people", "Heals teammates", "Causes rain"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the ultimate counter to Grimace Shake?",
+    image: "https://media.tenor.com/0QYEO-SgW0oAAAAM/grimace-shaker.gif",
+    options: ["Pure Sigma Aura shield", "Drinking water", "Running away", "Calling for help"],
+    answerIndex: 0
+  },
+  {
+    question: "How do you know someone is an Alpha?",
+    image: "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif",
+    options: ["They tell everyone they are an Alpha", "They stay silent", "They mew constantly", "They hide in corners"],
+    answerIndex: 0
+  },
+  {
+    question: "What is the final boss of Brainrot level 100?",
+    image: "https://media.tenor.com/17tz5nLA3I0AAAAM/%D0%B4.gif",
+    options: ["The Skibidi Giga-Rizzler of Ohio", "A normal person", "A math test", "A clock"],
+    answerIndex: 0
   }
 ];
-
 // State variables
 let selectedQuestions = [];
 let currentQuestionIndex = 0;
@@ -288,7 +492,6 @@ function startQuiz(difficulty) {
   difficultyContainer.classList.add('hidden');
   resultsContainer.classList.add('hidden');
 
-  // Set number of questions based on difficulty
   let count = 10;
   if (difficulty === 'easy') count = 5;
   if (difficulty === 'hard') count = 15;
@@ -297,7 +500,6 @@ function startQuiz(difficulty) {
   currentQuestionIndex = 0;
   userScore = 0;
 
-  // Setup UI badges
   diffBadge.textContent = difficulty.toUpperCase();
   diffBadge.className = `badge ${difficulty}-badge`;
 
@@ -319,17 +521,14 @@ function getRandomQuestions(arr, num) {
 function displayQuestion() {
   clearInterval(questionTimer);
   
-  // Play random meme sound for each question
   playRandomMemeSound();
 
   const total = selectedQuestions.length;
   const currentQ = selectedQuestions[currentQuestionIndex];
 
-  // Update Progress Bar & Question Count
   progressBar.style.width = `${((currentQuestionIndex) / total) * 100}%`;
   questionNumEl.textContent = `Question ${currentQuestionIndex + 1} / ${total}`;
 
-  // Render question text & meme image
   questionTextEl.innerHTML = `
     <div style="margin-bottom: 15px;">
       <img src="${currentQ.image}" alt="Meme GIF" class="quiz-gif">
@@ -337,7 +536,6 @@ function displayQuestion() {
     <div>${currentQ.question}</div>
   `;
 
-  // Render options grid
   optionsGridEl.innerHTML = '';
   currentQ.options.forEach((optionText, index) => {
     const btn = document.createElement('button');
@@ -347,7 +545,6 @@ function displayQuestion() {
     optionsGridEl.appendChild(btn);
   });
 
-  // Handle Timer for Hard mode
   if (currentDifficulty === 'hard') {
     timeLeft = 10;
     timerDisplay.textContent = ` ${timeLeft}s`;
@@ -356,7 +553,6 @@ function displayQuestion() {
       timerDisplay.textContent = ` ${timeLeft}s`;
       if (timeLeft <= 0) {
         clearInterval(questionTimer);
-        // Time out - advance without point
         nextQuestion();
       }
     }, 1000);
@@ -393,7 +589,6 @@ function showResults() {
 
   scoreTextEl.textContent = `Your Score: ${userScore} / ${total} (${percentage}%)`;
 
-  // Determine Advanced Rank, Message & Specific Result Sound
   let rank = "";
   let message = "";
   let gifUrl = "";
@@ -423,15 +618,14 @@ function showResults() {
     rank = "🤓 BETA NPC (-5,000 AURA)";
     message = "You dropped your lunch tray and lost all your aura points. Embarrassing.";
     gifUrl = "https://media.tenor.com/67fCL8AygjQAAAA1/no-aura.webp";
-    resultSound = "bark-fart_XRsy1HE.mp3";
+    resultSound = "ryan-gosling-burp.mp3";
   } else {
     rank = "💀 SKIBIDI TOILET VICTIM (-99,999 AURA)";
     message = "Zero brainrot knowledge. Go back to basic training before stepping foot in Ohio again.";
     gifUrl = "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif";
-    resultSound = "skibidi-toilet.mp3";
+    resultSound = "ryan-gosling-burp.mp3";
   }
 
-  // Play result sound
   playAudio(resultSound);
 
   rankTitleEl.textContent = rank;
