@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Phonk Hub</title>
+  <title>Phonk Hub - Sigma Quiz</title>
 
   <link rel="icon" type="image/x-icon" href="phonk.ico">
   <link rel="stylesheet" href="style.css"> 
@@ -15,36 +15,72 @@
 
   <h1>Sigma Bros</h1>
 
-  <div class="image-container">
-    <img src="https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif" alt="Burger GIF" class="side-img">
-    <img id="main-gif" src="https://media.tenor.com/Lnt2uEm1vrUAAAA1/67-67-kid.webp" alt="Egypt GIF" class="main-img">
-    <img src="https://yt3.ggpht.com/eo45eWqdbMp4idUHtBD_kXNEapJnAlFEEGuBKo4uLr9OejKmGO6UTE7Zolo9yO2o4pRDoqq11rQavw=s1080-c-fcrop64=1,00000000ffffffff-rw-nd-v1" alt="Profile Image" class="side-img">
+  <div id="hero-section">
+    <div class="image-container">
+      <img src="https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif" alt="Sad GIF" class="side-img">
+      <img id="main-gif" src="https://media.tenor.com/Lnt2uEm1vrUAAAA1/67-67-kid.webp" alt="67 Kid" class="main-img">
+      <img src="https://yt3.ggpht.com/eo45eWqdbMp4idUHtBD_kXNEapJnAlFEEGuBKo4uLr9OejKmGO6UTE7Zolo9yO2o4pRDoqq11rQavw=s1080-c-fcrop64=1,00000000ffffffff-rw-nd-v1" alt="Profile Image" class="side-img">
+    </div>
+
+    <p class="quiz-teaser">
+      Only 67% of Sigma nerds can pass the ultimate brainrot quiz!!
+      <img src="https://logolook.net/wp-content/uploads/2023/11/Emoji-Shocked.png" alt="Shocked Emoji" style="height: 3em; width: auto; vertical-align: middle;">
+    </p>
+
+    <button id="open-difficulty-btn" class="sigma-btn pulse-anim">TAKE THE SIGMA QUIZ 🗿</button>
   </div>
 
-  <p class="quiz-teaser">
-    Only 67% of Sigma nerds can pass the ultimate brainrot quiz!!
-    <img src="https://logolook.net/wp-content/uploads/2023/11/Emoji-Shocked.png" alt="Shocked Emoji" style="height: 3em; width: auto; vertical-align: middle;">
-  </p>
-
-  
-  <button id="start-quiz-btn" class="sigma-btn">TAKE THE SIGMA QUIZ</button>
-
-
-  <div id="quiz-container" class="quiz-box hidden">
-    <div id="question-number" class="question-count">Question 1 / 10</div>
-    <div id="question-text" class="question-title">Question goes here?</div>
+  <!-- Difficulty Selection Screen -->
+  <div id="difficulty-container" class="quiz-box hidden">
+    <h2>CHOOSE YOUR BRAINROT LEVEL</h2>
+    <p class="sub-text">How high is your current Aura?</p>
     
-    <div id="options-grid" class="options-container">
-    
+    <div class="difficulty-grid">
+      <button class="diff-btn easy-btn" data-diff="easy">
+        <span class="diff-title">🤓 BETA NPC</span>
+        <span class="diff-desc">5 Questions | Easy Rizz | No Timer</span>
+      </button>
+
+      <button class="diff-btn medium-btn" data-diff="medium">
+        <span class="diff-title">🗿 SIGMA GRINDSET</span>
+        <span class="diff-desc">10 Questions | Balanced Brainrot | No Timer</span>
+      </button>
+
+      <button class="diff-btn hard-btn" data-diff="hard">
+        <span class="diff-title">🔥 LEVEL 1000 GYATT IN OHIO</span>
+        <span class="diff-desc">15 Questions | Maximum Brainrot | 10s Timer!</span>
+      </button>
     </div>
   </div>
 
+  <!-- Quiz Play Box -->
+  <div id="quiz-container" class="quiz-box hidden">
+    <div class="quiz-header">
+      <span id="diff-badge" class="badge">NORMAL</span>
+      <span id="timer-display" class="timer hidden">⏳ 10s</span>
+    </div>
 
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+
+    <div id="question-number" class="question-count">Question 1 / 10</div>
+    <div id="question-text" class="question-title">Loading question...</div>
+    
+    <div id="options-grid" class="options-container"></div>
+  </div>
+
+  <!-- Results Box -->
   <div id="results-container" class="results-box hidden">
-    <h2>QUIZ COMPLETED!</h2>
-    <p id="score-text">Your Sigma Score: 0/10</p>
-    <p id="rank-text">Rank: Calculating...</p>
-    <button id="restart-btn" class="sigma-btn">TRY AGAIN</button>
+    <h2 id="result-title">EVALUATION COMPLETE</h2>
+    <div id="result-gif-container"></div>
+    <p id="score-text" class="score-display">Your Sigma Score: 0/10</p>
+    <div id="rank-box" class="rank-card">
+      <span id="rank-title" class="rank-badge">Calculating...</span>
+      <p id="rank-desc" class="rank-message"></p>
+    </div>
+    <button id="restart-btn" class="sigma-btn">RETRY / CHANGE DIFFICULTY 🔄</button>
   </div>
 
   <script src="script.js"></script>
