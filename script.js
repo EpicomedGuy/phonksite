@@ -1,3 +1,49 @@
+// Sound Effect Definitions
+const MEME_SOUNDS = [
+  'among-us-role-reveal-sound.mp3',
+  'bark-fart_XRsy1HE.mp3',
+  'chicken-on-tree-screaming.mp3',
+  'dry-fart.mp3',
+  'enrique.mp3',
+  'google-chrome-20130527-1558.mp3',
+  'long-brain-fart.mp3',
+  'mr-beast-phonk-meme.mp3',
+  'rizz-sound-effect.mp3',
+  'sigeon-pex-so-ahh.mp3',
+  'skibidi-toilet.mp3',
+  'suii.mp3',
+  'syfm_Uw1QK7v.mp3',
+  'tuco-get-out.mp3',
+  'undertakers-bell_2UwFCIe.mp3',
+  'vine-boom.mp3'
+];
+
+// Helper to play any sound file safely
+function playAudio(filename) {
+  const audio = new Audio(filename);
+  audio.play().catch(err => {
+    // Suppress errors caused by browser autoplay policies
+    console.log(`Audio play blocked or failed for: ${filename}`, err);
+  });
+}
+
+// Play a random sound from the meme pool
+function playRandomMemeSound() {
+  const randomIndex = Math.floor(Math.random() * MEME_SOUNDS.length);
+  playAudio(MEME_SOUNDS[randomIndex]);
+}
+
+// Handle site opening sound ("auraa.mp3") on first user interaction
+let auraPlayed = false;
+function triggerAuraOnFirstInteraction() {
+  if (!auraPlayed) {
+    playAudio('auraa.mp3');
+    auraPlayed = true;
+  }
+}
+document.addEventListener('click', triggerAuraOnFirstInteraction, { once: true });
+document.addEventListener('keydown', triggerAuraOnFirstInteraction, { once: true });
+
 // Extended Question Bank with working Direct Media URLs
 const questionBank = [
   {
@@ -272,6 +318,10 @@ function getRandomQuestions(arr, num) {
 
 function displayQuestion() {
   clearInterval(questionTimer);
+  
+  // Play random meme sound for each question
+  playRandomMemeSound();
+
   const total = selectedQuestions.length;
   const currentQ = selectedQuestions[currentQuestionIndex];
 
@@ -343,36 +393,46 @@ function showResults() {
 
   scoreTextEl.textContent = `Your Score: ${userScore} / ${total} (${percentage}%)`;
 
-  // Determine Advanced Rank & Message
+  // Determine Advanced Rank, Message & Specific Result Sound
   let rank = "";
   let message = "";
   let gifUrl = "";
+  let resultSound = "";
 
   if (percentage === 100) {
     rank = "👑 GOD-KING OF OHIO (+99,999 AURA)";
     message = "You have reached peak brainrot ascension. Mewing level infinite. GigaChads fear your presence.";
     gifUrl = "https://media.tenor.com/MbZ-Uvlmn6cAAAAM/sigma-boy-mewing.gif";
+    resultSound = "mr-beast-phonk-meme.mp3";
   } else if (percentage >= 80) {
     rank = "🗿 ULTIMATE SIGMA GRINDSET (+5,000 AURA)";
     message = "Heavy phonk music plays wherever you walk. Your jawline can cut diamonds.";
     gifUrl = "https://media.tenor.com/a8IHKcQkXmkAAAAm/aura.webp";
+    resultSound = "suii.mp3";
   } else if (percentage >= 60) {
     rank = "🔥 CERTIFIED RIZZLER (+1,000 AURA)";
     message = "Not bad! You know your way around Ohio and Fanum taxes, but you need to keep grinding.";
     gifUrl = "https://media.tenor.com/MCJFAavmyJwAAAAM/rizzler-the-rizzler.gif";
+    resultSound = "rizz-sound-effect.mp3";
   } else if (percentage >= 40) {
     rank = "🌽 AVERAGE OHIO RESIDENT (0 AURA)";
-    message = "You get hit by Fanum Tax daily. Time to locks in and start mewing.";
+    message = "You get hit by Fanum Tax daily. Time to lock in and start mewing.";
     gifUrl = "https://media.tenor.com/zqSA5TmyIYUAAAAM/sus-cat-2-suspicious-cat.gif";
+    resultSound = "among-us-role-reveal-sound.mp3";
   } else if (percentage >= 20) {
     rank = "🤓 BETA NPC (-5,000 AURA)";
     message = "You dropped your lunch tray and lost all your aura points. Embarrassing.";
     gifUrl = "https://media.tenor.com/67fCL8AygjQAAAA1/no-aura.webp";
+    resultSound = "bark-fart_XRsy1HE.mp3";
   } else {
     rank = "💀 SKIBIDI TOILET VICTIM (-99,999 AURA)";
     message = "Zero brainrot knowledge. Go back to basic training before stepping foot in Ohio again.";
     gifUrl = "https://media1.tenor.com/m/zyDv5iQ1DNkAAAAC/sad.gif";
+    resultSound = "skibidi-toilet.mp3";
   }
+
+  // Play result sound
+  playAudio(resultSound);
 
   rankTitleEl.textContent = rank;
   rankDescEl.textContent = message;
